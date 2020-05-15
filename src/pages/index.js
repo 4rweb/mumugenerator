@@ -3,60 +3,85 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import muuuuuu from "../images/cow.mp3"
-import { Button, Form, TextArea } from "semantic-ui-react"
+import { Button, Form, TextArea, Divider } from "semantic-ui-react"
+import copy from "copy-to-clipboard"
 
 class IndexPage extends Component {
-  state = { mugido: "", submittedMuuuuuu: "" }
-  handleChange = (e, { name, value }) => this.setState({ [name]: value }) 
+  constructor() {
+    super()
+    this.state = {
+      mugido: "",
+      submittedMuuuuuu: "",
+      textToCopy: "Copiar",
+      btnText: "Copiar",
+    }
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleCopy = this.handleCopy.bind(this)
+  }
+
+  handleInputChange(e) {
+    this.setState({
+      textToCopy: e.target.value,
+      btnText: "Copiar",
+    })
+  }
+
+  handleCopy() {
+    copy(this.state.textToCopy)
+    this.setState({ btnText: "Copiado!!!" })
+  }
+
+  handleChange = (e, { name, value }) =>
+    this.setState({
+      [name]: value,
+      textToCopy: value,
+      btnText: "Copiar",
+    })
+
   handleSubmit = () => {
     const { mugido } = this.state
-    
+
     let audio = new Audio(muuuuuu)
     audio.play()
 
-    var mugidoAlto=mugido.toLowerCase();
+    var mugidoAlto = mugido.toLowerCase()
 
-    console.log("mugidoAlto: ", mugidoAlto)
-
-    var s = mugidoAlto.replace(/[a-z]/g, function(str, p1, p2, offset, s) {
+    var s = mugidoAlto.replace(/[a-z]/g, function (str, p1, p2, offset, s) {
       var translate_table = {
-          'a': 'Mu',
-          'b': 'Mu',
-          'c': 'Mu',
-          'd': 'Mu',
-          'e': 'Mu',
-          'f': 'Mu',
-          'g': 'Mu',
-          'h': 'Mu',
-          'i': 'Mu',
-          'j': 'Mu',
-          'k': 'Mu',
-          'l': 'Mu',
-          'm': 'Mu',
-          'n': 'Mu',
-          'o': 'Mu',
-          'p': 'Mu',
-          'q': 'Mu',
-          'r': 'Mu',
-          's': 'Mu',
-          't': 'Mu',
-          'u': 'Mu',
-          'v': 'Mu',
-          'w': 'Mu',
-          'x': 'Mu',
-          'y': 'Mu',
-          'z': 'Mu'
-      };
-      return translate_table[str];
-  });
+        a: "Muu",
+        b: "Muuu",
+        c: "Muu",
+        d: "Muuu",
+        e: "Muuu",
+        f: "Mu",
+        g: "Muu",
+        h: "Muu",
+        i: "Muuu",
+        j: "Mu",
+        k: "Muu",
+        l: "Mu",
+        m: "Muu",
+        n: "Muu",
+        o: "Muuu",
+        p: "Mu",
+        q: "Muuuu",
+        r: "Muu",
+        s: "Mu",
+        t: "Muuu",
+        u: "Mu",
+        v: "Muuu",
+        w: "Mu",
+        x: "Muuu",
+        y: "Mu",
+        z: "Muuuu",
+      }
+      return translate_table[str]
+    })
 
-  console.log(s)
-
-  this.setState({ submittedMuuuuuu: s })
-
+    this.setState({ submittedMuuuuuu: s, textToCopy: s })
   }
   render() {
-    const { mugido, submittedMuuuuuu } = this.state
+    const { mugido, submittedMuuuuuu, btnText } = this.state
     return (
       <Layout>
         <SEO title="Gerador de mugidos" />
@@ -72,6 +97,17 @@ class IndexPage extends Component {
           <Form.Field control={Button}>Mugir</Form.Field>
         </Form>
         <pre>{submittedMuuuuuu}</pre>
+        <Button
+          onClick={this.handleCopy}
+          fluid
+          disabled={btnText === "Copiado!!!"}
+        >
+          {btnText}
+        </Button>
+        <small>
+          Copie o texto gerado acima e envie para seu amigo Bolsoloide!
+        </small>
+        <Divider />
         <Link to="/page-2/">Sobre o MuMu</Link>
       </Layout>
     )

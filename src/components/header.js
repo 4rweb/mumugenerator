@@ -27,8 +27,7 @@ const Headerr = ({ siteTitle }) => (
             textDecoration: `none`,
           }}
         >
-              <Header as='h2' className="mu" image={mu} content="MuMuGenerator" />
-
+        <Header as='h2' className="mu" image={mu} content="MuMuGenerator" />
         </Link>
       </h1>
     </div>
