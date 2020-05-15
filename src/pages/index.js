@@ -48,37 +48,39 @@ class IndexPage extends Component {
 
     var s = mugidoAlto.replace(/[a-z]/g, function (str, p1, p2, offset, s) {
       var translate_table = {
-        a: "Muu",
-        b: "Muuu",
+        a: "Mu",
+        b: "Muu",
         c: "Muu",
-        d: "Muuu",
-        e: "Muuu",
+        d: "Mu",
+        e: "Muu",
         f: "Mu",
         g: "Muu",
-        h: "Muu",
-        i: "Muuu",
+        h: "Mu",
+        i: "Muu",
         j: "Mu",
         k: "Muu",
         l: "Mu",
         m: "Muu",
-        n: "Muu",
-        o: "Muuu",
+        n: "Mu",
+        o: "Muu",
         p: "Mu",
-        q: "Muuuu",
-        r: "Muu",
-        s: "Mu",
-        t: "Muuu",
-        u: "Mu",
-        v: "Muuu",
+        q: "Muu",
+        r: "Mu",
+        s: "Muu",
+        t: "Mu",
+        u: "Muu",
+        v: "Muu",
         w: "Mu",
-        x: "Muuu",
+        x: "Muu",
         y: "Mu",
-        z: "Muuuu",
+        z: "Muu",
       }
       return translate_table[str]
     })
 
-    this.setState({ submittedMuuuuuu: s, textToCopy: s })
+    const via = s+" via https://mumugenerator.netlify.app"
+    this.setState({ submittedMuuuuuu: via, textToCopy: via })
+
   }
   render() {
     const { mugido, submittedMuuuuuu, btnText } = this.state
