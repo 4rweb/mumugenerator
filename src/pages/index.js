@@ -102,7 +102,7 @@ class IndexPage extends Component {
         <Button
           onClick={this.handleCopy}
           fluid
-          disabled={btnText === "Copiado!!!"}
+          disabled={btnText === "Copiado!"}
         >
           {btnText}
         </Button>
